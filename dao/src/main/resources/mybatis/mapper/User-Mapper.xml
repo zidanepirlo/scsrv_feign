@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.yuan.springcloud.scsrv.dao.domain.IUserDao">
+
+    <resultMap id="BaseResultMap" type="com.yuan.springcloud.scsrv.dao.entity.User">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        ID,NAME
+    </sql>
+    <select id="findById" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <select id="findByName" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where name = #{name,jdbcType=VARCHAR}
+    </select>
+
+    <select id="findByIdAndName" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where 1=1
+        <if test=" id != null">
+        and id = #{id,jdbcType=VARCHAR}
+        </if>
+        <if test=" name != null">
+            and name = #{name,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+    <insert id="insert" parameterType="com.yuan.springcloud.scsrv.dao.entity.User"  useGeneratedKeys="true" keyProperty="id">
+        insert into user (id, name)
+        values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR})
+    </insert>
+
+</mapper>
