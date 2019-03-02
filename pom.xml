@@ -31,6 +31,8 @@
 		<api.version>0.0.1-SNAPSHOT</api.version>
 		<web.version>0.0.1-SNAPSHOT</web.version>
 		<druid.version>1.1.6</druid.version>
+		<jedis.version>2.9.0</jedis.version>
+		<guice.version>4.2.2</guice.version>
 	</properties>
 
 	<dependencyManagement>
@@ -80,6 +82,18 @@
 				<groupId>com.alibaba</groupId>
 				<artifactId>druid</artifactId>
 				<version>${druid.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>redis.clients</groupId>
+				<artifactId>jedis</artifactId>
+				<version>${jedis.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.google.inject</groupId>
+				<artifactId>guice</artifactId>
+				<version>${guice.version}</version>
 			</dependency>
 
 		</dependencies>

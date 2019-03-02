@@ -28,6 +28,10 @@
             <groupId>com.yuan.springcloud.scsrv</groupId>
             <artifactId>dao</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.yuan.springcloud.scsrv</groupId>
+            <artifactId>common</artifactId>
+        </dependency>
 
     </dependencies>
 </project>
