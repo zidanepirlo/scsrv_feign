@@ -33,6 +33,8 @@
 		<druid.version>1.1.6</druid.version>
 		<jedis.version>2.9.0</jedis.version>
 		<guice.version>4.2.2</guice.version>
+		<junit.version>4.12</junit.version>
+		<fescar.version>0.4.0</fescar.version>
 	</properties>
 
 	<dependencyManagement>
@@ -93,8 +95,49 @@
 			<dependency>
 				<groupId>com.google.inject</groupId>
 				<artifactId>guice</artifactId>
-				<version>${guice.version}</version>
+				<!--<version>${guice.version}</version>-->
+				<version>4.1.0</version>
 			</dependency>
+
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+			</dependency>
+
+
+			<!--fescar begin-->
+			<!--<dependency>-->
+			<!--<groupId>com.alibaba.fescar</groupId>-->
+			<!--<artifactId>fescar-common</artifactId>-->
+			<!--<version>0.3.0</version>-->
+			<!--</dependency>-->
+			<dependency>
+				<groupId>com.alibaba.fescar</groupId>
+				<artifactId>fescar-spring</artifactId>
+				<version>${fescar.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.alibaba.fescar</groupId>
+				<artifactId>fescar-all</artifactId>
+				<version>${fescar.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.alibaba.fescar</groupId>
+				<artifactId>fescar-dubbo-alibaba</artifactId>
+				<version>${fescar.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.alibaba.fescar</groupId>
+				<artifactId>fescar-dubbo</artifactId>
+				<version>${fescar.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.alibaba.fescar</groupId>
+				<artifactId>fescar-rm-datasource</artifactId>
+				<version>${fescar.version}</version>
+			</dependency>
+			<!--fescar end-->
 
 		</dependencies>
 	</dependencyManagement>

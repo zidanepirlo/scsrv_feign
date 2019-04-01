@@ -1,9 +1,11 @@
 package com.yuan.springcloud.scsrv.web.controller;
 
+import com.yuan.springcloud.scsrv.service.ICacheService;
 import com.yuan.springcloud.scsrv.web.Utils.TestUtils;
 import com.yuan.springcloud.scsrv.web.entity.Person;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +24,9 @@ import java.util.List;
 public class TestController {
 
     private static final Logger logger = LoggerFactory.getLogger(TestController.class);
+
+    @Autowired
+    private ICacheService iCacheService;
 
     @RequestMapping("test")
     @ResponseBody
@@ -72,6 +77,5 @@ public class TestController {
             logger.info("person={}", person);
         }
     }
-
 
 }

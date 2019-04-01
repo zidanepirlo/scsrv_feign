@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface IUserDao {
 
-    String insert(User user);
+    void insert(User user);
     User findById(@Param("id") String id);
     List<User> findByName(@Param("name") String name);
     List<User> findByIdAndName(@Param("id") String id, @Param("name") String name);

@@ -104,5 +104,26 @@
             <artifactId>druid</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.alibaba.fescar</groupId>
+            <artifactId>fescar-spring</artifactId>
+        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>com.alibaba.fescar</groupId>-->
+        <!--<artifactId>fescar-all</artifactId>-->
+        <!--</dependency>-->
+        <dependency>
+            <groupId>com.alibaba.fescar</groupId>
+            <artifactId>fescar-dubbo-alibaba</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.fescar</groupId>
+            <artifactId>fescar-dubbo</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.fescar</groupId>
+            <artifactId>fescar-rm-datasource</artifactId>
+        </dependency>
+
     </dependencies>
 </project>

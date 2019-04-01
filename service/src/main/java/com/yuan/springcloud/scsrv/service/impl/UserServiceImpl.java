@@ -8,6 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserServiceImpl implements IUserService {
@@ -17,10 +19,9 @@ public class UserServiceImpl implements IUserService {
     @Autowired
     private IUserDao userDao;
 
-
+    @Transactional(propagation= Propagation.REQUIRED,rollbackFor=Exception.class)
     public void addUser(User user) {
-      String id = userDao.insert(user);
-      logger.info("addUser id={}",id);
+      userDao.insert(user);
     }
 
     public User getUserById(String userId) {

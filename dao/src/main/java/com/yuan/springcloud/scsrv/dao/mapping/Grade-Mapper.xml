@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuan.springcloud.scsrv.dao.domain.IGradeDao">
+
+
+    <insert id="insertGrade"  useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO `grade`
+        (
+        <trim suffixOverrides=",">
+            <if test="id!=null">
+                `id`,
+            </if>
+            <if test="user_id!=null">
+                `user_id`,
+            </if>
+            <if test="grade_id!=null">
+                `grade_id`,
+            </if>
+            <if test="grade_value!=null">
+                `grade_value`,
+            </if>
+        </trim>
+        )
+        VALUES
+        (
+        <trim suffixOverrides=",">
+            <if test="id!=null">
+                #{id},
+            </if>
+            <if test="user_id!=null">
+                #{user_id},
+            </if>
+            <if test="grade_id!=null">
+                #{grade_id},
+            </if>
+            <if test="grade_value!=null">
+                #{grade_value},
+            </if>
+        </trim>
+        )
+    </insert>
+
+</mapper>
