@@ -17,21 +17,13 @@
 package com.yuan.springcloud.scsrv.common.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import com.alibaba.fescar.rm.datasource.DataSourceProxy;
-import org.mybatis.spring.SqlSessionFactoryBean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
-import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
-import java.io.IOException;
 
 /**
  * The type Druid configuration.
@@ -52,45 +44,29 @@ public class DruidConfig {
 	 * @return the druid data source
 	 */
 	@ConfigurationProperties(prefix = "spring.datasource")
-	@Bean(name="druidDataSource",destroyMethod = "close", initMethod = "init")
+//	@Bean(name="druidDataSource",destroyMethod = "close", initMethod = "init")
+	@Bean(name="dataSource",destroyMethod = "close", initMethod = "init")
 	public DruidDataSource getDruidDataSource() {
 		DruidDataSource druidDataSource = new DruidDataSource();
 		return druidDataSource;
 	}
 
-	/**
-	 * Data source data source.
-	 *
-	 * @param druidDataSource the druid data source
-	 * @return the data source
-	 */
-	@ConfigurationProperties(prefix = "spring.datasource")
-	@Primary
-	@Bean("dateSourceProxy")
-	public DataSource getDateSourceProxy(DruidDataSource druidDataSource) {
-		DataSourceProxy dataSourceProxy = new DataSourceProxy(getDruidDataSource());
-		return dataSourceProxy;
-	}
-
-	@Bean(name = "sqlSessionFactory")
-	public SqlSessionFactoryBean getSqlSessionFactory() throws IOException {
-
-		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-		/** 设置mybatis configuration 扫描路径 */
-		sqlSessionFactoryBean.setConfigLocation(new ClassPathResource(MYBATIS_CONFIG));
-		/** 添加mapper 扫描路径 */
-		PathMatchingResourcePatternResolver pathMatchingResourcePatternResolver = new PathMatchingResourcePatternResolver();
-		String packageSearchPath = ResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX + MAPPER_PATH;
-		sqlSessionFactoryBean.setMapperLocations(pathMatchingResourcePatternResolver.getResources(packageSearchPath));
-		/** 设置datasource */
-		sqlSessionFactoryBean.setDataSource(getDateSourceProxy(getDruidDataSource()));
-		/** 设置typeAlias 包扫描路径 */
-		sqlSessionFactoryBean.setTypeAliasesPackage(typeAliasPackage);
-		return sqlSessionFactoryBean;
-	}
+//	/**
+//	 * Data source data source.
+//	 *
+//	 * @param druidDataSource the druid data source
+//	 * @return the data source
+//	 */
+//	@ConfigurationProperties(prefix = "spring.datasource")
+//	@Primary
+//	@Bean("dataSource")
+//	public DataSource getDateSource(@Qualifier("druidDataSource") DruidDataSource druidDataSource) {
+//		DataSourceProxy dataSourceProxy = new DataSourceProxy(getDruidDataSource());
+//		return dataSourceProxy;
+//	}
 
 	@Bean("transactionManager")
-	public DataSourceTransactionManager oracleTransactionManager(@Qualifier("dateSourceProxy")DataSource dataSource){
+	public DataSourceTransactionManager getTransactionManager(@Qualifier("dataSource")DataSource dataSource){
 		return new DataSourceTransactionManager(dataSource);
 	}
 }

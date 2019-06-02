@@ -7,9 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -42,7 +40,7 @@ public class UserController {
         return users;
     }
 
-    @RequestMapping("findById")
+    @GetMapping("findById")
     @ResponseBody
     public User findById(String id) {
         User user = userDao.findById(id);
@@ -50,7 +48,7 @@ public class UserController {
         return user;
     }
 
-    @RequestMapping("findByIdAndName")
+    @GetMapping("findByIdAndName")
     @ResponseBody
     public List<User> findByIdAndName(String id,String name) {
         List<User> users = userDao.findByIdAndName(id,name);
@@ -61,7 +59,7 @@ public class UserController {
         return users;
     }
 
-    @RequestMapping(value = "/addUser")
+    @PostMapping(value = "/addUser")
     @ResponseBody
     public boolean addUser(@RequestBody User user) {
         try{

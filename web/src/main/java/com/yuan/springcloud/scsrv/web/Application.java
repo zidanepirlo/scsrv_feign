@@ -7,19 +7,28 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.eureka.EurekaClientAutoConfiguration;
+import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScans;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @EnableDiscoveryClient
-@EnableEurekaClient
+//@EnableEurekaClient
 @EnableCircuitBreaker
 @EnableTransactionManagement
-//org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class disable web security
-//@SpringBootApplication(exclude =
-//		{DataSourceAutoConfiguration.class,
-//				org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class},scanBasePackages = "com.yuan.springcloud")
+@EnableFeignClients
+@ComponentScan(basePackages={"com.yuan.springcloud.scsrv"})
 @SpringBootApplication(exclude =
-		{org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class},scanBasePackages = "com.yuan.springcloud")
+		{
+				org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class,
+                DataSourceAutoConfiguration.class
+				,
+				EurekaClientAutoConfiguration.class
+
+		},scanBasePackages = "com.yuan.springcloud")
 @MapperScan(basePackages = "com.yuan.springcloud.scsrv.dao.domain.**",sqlSessionFactoryRef = "sqlSessionFactory" )
+//@MapperScan(basePackages = "com.yuan.springcloud.scsrv.dao.domain.**" )
 public class Application {
 
 	public static void main(String[] args) {

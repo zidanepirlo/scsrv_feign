@@ -19,16 +19,30 @@ package com.yuan.springcloud.scsrv.common.config;
 import com.alibaba.fescar.spring.annotation.GlobalTransactionScanner;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * The type Fescar configuration.
  */
-@Configuration
+//@Configuration
 public class FescarConfig {
 
 	@Value("${spring.application.name}")
 	private String applicationId;
+
+//	@Bean
+//	public FescarHandlerInterceptor getFescarHandlerInterceptor(){
+//		return new FescarHandlerInterceptor();
+//	}
+
+	@Bean
+	public FescarHandlerInterceptorConfiguration getFescarHandlerInterceptorConfiguration(){
+		return new FescarHandlerInterceptorConfiguration();
+	}
+
+//	@Bean
+//	public FescarXidFilter fescarXidFilter(){
+//		return new FescarXidFilter();
+//	}
 
 	/**
 	 * 注册一个StatViewServlet
