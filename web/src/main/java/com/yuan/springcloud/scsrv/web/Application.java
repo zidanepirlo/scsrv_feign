@@ -13,8 +13,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScans;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@EnableDiscoveryClient
-//@EnableEurekaClient
+//@EnableDiscoveryClient
+@EnableEurekaClient
 @EnableCircuitBreaker
 @EnableTransactionManagement
 @EnableFeignClients
@@ -23,8 +23,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 		{
 				org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class,
                 DataSourceAutoConfiguration.class
-				,
-				EurekaClientAutoConfiguration.class
+//				,
+//				EurekaClientAutoConfiguration.class
 
 		},scanBasePackages = "com.yuan.springcloud")
 @MapperScan(basePackages = "com.yuan.springcloud.scsrv.dao.domain.**",sqlSessionFactoryRef = "sqlSessionFactory" )
